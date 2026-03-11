@@ -1,0 +1,905 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0a0a0a;
+  --charcoal: #111111;
+  --gray: #1e1e1e;
+  --light-gray: #e8e6e1;
+  --white: #f5f3ee;
+  --gold: #ffffff;
+  --gold-light: #cccccc;
+  --text-dim: #888;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Heebo', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  direction: rtl;
+  text-align: right;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; right: 0; left: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 64px;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.nav-logo {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta { background: var(--white); color: var(--black) !important; padding: 10px 22px; font-weight: 700 !important; font-size: 13px !important; letter-spacing: 1px; transition: background 0.2s !important; }
+.nav-cta:hover { background: #ccc !important; color: var(--black) !important; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to left, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.7) 60%, rgba(10,10,10,0.92) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  padding-right: 80px;
+  max-width: 700px;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 900;
+  font-size: clamp(64px, 9vw, 130px);
+  line-height: 0.9;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+
+.hero-title span {
+  color: var(--gold);
+  display: block;
+}
+
+.hero-sub {
+  font-size: 16px;
+  font-weight: 300;
+  color: #ccc;
+  max-width: 440px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--black);
+  padding: 16px 36px;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+.btn-ghost {
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--white);
+  padding: 15px 32px;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-stats {
+  position: absolute;
+  bottom: 80px;
+  left: 80px;
+  display: flex;
+  gap: 48px;
+  z-index: 3;
+}
+
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label { font-size: 11px; color: #888; letter-spacing: 1px; margin-top: 4px; }
+
+/* ─── SECTION BASE ─── */
+section { padding: 100px 80px; }
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 900;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.05;
+  color: var(--white);
+}
+
+/* ─── ABOUT / VIDEO SECTION ─── */
+.about {
+  background: var(--light-gray);
+  color: var(--black);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 100px 80px;
+}
+
+.about-text { order: 1; }
+.about-media { order: 2; }
+
+.about .section-label { color: #555; }
+
+.about-title {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 900;
+  font-size: clamp(32px, 4vw, 52px);
+  color: var(--black);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.about-title em {
+  font-style: normal;
+  color: #555555;
+}
+
+.about-body {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 32px;
+}
+
+.about .btn-primary { background: var(--black); color: var(--white); }
+.about .btn-primary:hover { background: #333; }
+
+.video-wrapper {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #000;
+  overflow: hidden;
+}
+
+.video-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.play-circle {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.play-circle:hover { transform: scale(1.1); background: var(--gold); }
+
+.play-circle svg { width: 24px; height: 24px; fill: #000; margin-right: -4px; }
+
+/* ─── FEATURES / EDGE SECTION ─── */
+.edge {
+  background: var(--charcoal);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0;
+  min-height: 600px;
+}
+
+.edge-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.edge-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(30%);
+  transition: transform 6s ease;
+}
+
+.edge:hover .edge-image img { transform: scale(1.04); }
+
+.edge-content {
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--charcoal);
+}
+
+.edge-content .section-title { margin-bottom: 8px; }
+.edge-subtitle {
+  font-size: 18px;
+  color: var(--gold);
+  font-weight: 300;
+  margin-bottom: 28px;
+}
+
+.edge-body {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #aaa;
+  margin-bottom: 40px;
+}
+
+.features-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #ccc;
+  padding: 10px 14px;
+  border: 1px solid #2a2a2a;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.features-list li:hover {
+  border-color: var(--gold);
+  color: var(--white);
+  background: rgba(255,255,255,0.04);
+}
+
+.features-list li::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+
+/* ─── TRANSFORM / BEFORE-AFTER ─── */
+.transform {
+  background: var(--light-gray);
+  color: var(--black);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 100px 80px;
+}
+
+.transform-text { order: 1; }
+.transform-media { order: 2; }
+
+.transform .section-label { color: #555555; }
+
+.transform-title {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 900;
+  font-size: clamp(32px, 4vw, 52px);
+  color: var(--black);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.transform-body { font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 32px; }
+
+.transform .btn-primary { background: var(--black); color: var(--white); }
+
+.before-after {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  position: relative;
+}
+
+.ba-img {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.ba-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.ba-label {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.8);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 5px 10px;
+}
+
+.ba-label.after { right: auto; left: 12px; background: var(--gold); color: #000; }
+
+/* ─── REVIEWS ─── */
+.reviews {
+  background: var(--black);
+  text-align: center;
+  padding: 100px 80px;
+}
+
+.reviews-header { margin-bottom: 16px; }
+.reviews .section-title { margin-bottom: 8px; }
+
+.stars { font-size: 22px; color: var(--gold); letter-spacing: 4px; margin-bottom: 8px; }
+.reviews-meta { font-size: 13px; color: var(--text-dim); margin-bottom: 56px; }
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.review-card {
+  background: var(--charcoal);
+  border: 1px solid #222;
+  padding: 28px;
+  text-align: right;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.review-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+
+.reviewer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-direction: row-reverse;
+  margin-bottom: 16px;
+}
+
+.reviewer-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--black);
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.reviewer-name { font-weight: 700; font-size: 14px; }
+.reviewer-time { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+
+.review-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; margin-bottom: 12px; }
+
+.review-text { font-size: 13px; line-height: 1.7; color: #bbb; }
+
+/* ─── INSTAGRAM ─── */
+.instagram { background: var(--charcoal); padding: 80px; }
+
+.insta-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.insta-header .section-title { font-size: 28px; text-transform: uppercase; letter-spacing: 2px; }
+
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto 32px;
+}
+
+.insta-item {
+  aspect-ratio: 1;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.insta-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%);
+  transition: transform 0.4s, filter 0.4s;
+}
+
+.insta-item:hover img { transform: scale(1.06); filter: grayscale(0%); }
+
+.insta-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(201,168,76,0.0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.insta-item:hover .insta-overlay { background: rgba(201,168,76,0.15); }
+
+.insta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* ─── FAQ ─── */
+.faq-wrapper {
+  background: var(--black);
+  padding: 100px 80px;
+}
+
+.faq {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-header { text-align: center; margin-bottom: 56px; }
+
+.faq-item {
+  border-bottom: 1px solid #222;
+  padding: 24px 0;
+  cursor: pointer;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.faq-icon {
+  width: 24px; height: 24px;
+  border: 1px solid #444;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-right: 0;
+  margin-left: 0;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.faq-item.open .faq-icon { transform: rotate(45deg); border-color: var(--gold); }
+
+.faq-answer {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.8;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+}
+
+.faq-item.open .faq-answer { max-height: 200px; padding-top: 16px; }
+
+/* ─── FOOTER CTA ─── */
+.footer-cta {
+  background: var(--charcoal);
+  padding: 100px 80px;
+  text-align: center;
+  border-top: 1px solid #1a1a1a;
+}
+
+.footer-tagline {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.tagline-item {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 900;
+  font-size: clamp(20px, 3vw, 36px);
+  letter-spacing: 1px;
+  color: var(--white);
+}
+
+.tagline-item span { color: var(--gold); }
+
+.footer-form {
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.form-field {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #444;
+  padding: 14px 4px;
+  color: var(--white);
+  font-family: 'Heebo', sans-serif;
+  font-size: 14px;
+  width: 100%;
+  direction: rtl;
+  text-align: right;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.form-field::placeholder { color: #555; }
+.form-field:focus { border-color: var(--gold); }
+
+.form-submit {
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  padding: 16px;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.form-submit:hover { background: var(--gold-light); }
+
+/* ─── ACTUAL FOOTER ─── */
+.site-footer {
+  background: var(--black);
+  padding: 40px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #1a1a1a;
+  flex-direction: row-reverse;
+}
+
+.footer-logo {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--white);
+}
+
+.footer-copy { font-size: 12px; color: #555; }
+
+.footer-socials { display: flex; gap: 20px; }
+
+.social-link {
+  width: 36px; height: 36px;
+  border: 1px solid #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #888;
+  font-size: 14px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ─── FEATURE CLICKABLE ─── */
+.feature-clickable {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.feature-clickable:hover {
+  color: var(--gold);
+}
+
+/* ─── WORKOUT MODAL ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  animation: modalFadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: var(--charcoal);
+  border: 1px solid #222;
+  max-width: 620px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 48px;
+  position: relative;
+  text-align: right;
+  animation: modalSlideUp 0.35s ease;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: 1px solid #333;
+  color: #888;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.modal-close:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.modal-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.modal-title {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 900;
+  font-size: 32px;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.modal-subtitle {
+  font-size: 15px;
+  color: var(--gold);
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+
+.modal-description {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #aaa;
+  margin-bottom: 28px;
+}
+
+.modal-meta {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 28px;
+  padding: 20px 0;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+}
+
+.modal-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal-meta-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.modal-meta-value {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.modal-benefits-title {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.modal-benefits {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.modal-benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #bbb;
+}
+
+.modal-benefits li::before {
+  content: '✓';
+  color: var(--gold);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.modal-cta {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow { animation: fadeUp 0.7s 0.2s both; }
+.hero-title   { animation: fadeUp 0.7s 0.4s both; }
+.hero-sub     { animation: fadeUp 0.7s 0.6s both; }
+.hero-actions { animation: fadeUp 0.7s 0.8s both; }
+.hero-stats   { animation: fadeUp 0.7s 1.0s both; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  section { padding: 60px 24px; }
+  .about, .transform { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+  .about-text, .about-media, .transform-text, .transform-media { order: unset; }
+  .edge { grid-template-columns: 1fr; }
+  .edge-image { height: 320px; }
+  .edge-content { padding: 48px 24px; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .insta-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats { left: 24px; gap: 24px; }
+  .hero-content { padding-right: 24px; }
+  .site-footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 24px; }
+  .footer-tagline { gap: 24px; }
+  .faq-wrapper { padding: 60px 24px; }
+  .footer-cta { padding: 60px 24px; }
+  .instagram { padding: 60px 24px; }
+  .modal-overlay { padding: 16px; }
+  .modal-content { padding: 32px 24px; }
+}
