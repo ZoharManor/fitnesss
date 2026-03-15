@@ -121,6 +121,7 @@ const instaImages = [
 function App() {
   const [openFaq, setOpenFaq] = useState(0)
   const [activeWorkout, setActiveWorkout] = useState(null)
+  const [menuOpen, setMenuOpen] = useState(false)
   const revealRefs = useRef([])
 
   useEffect(() => {
@@ -173,15 +174,18 @@ function App() {
     <>
       {/* NAV */}
       <nav>
-        <ul className="nav-links">
-          <li><a href="#about">אימון אישי</a></li>
-          <li><a href="#edge">היתרון שלנו</a></li>
-          <li><a href="#transform">תוצאות</a></li>
-          <li><a href="#reviews">לקוחות</a></li>
-          <li><a href="#instagram">אינסטגרם</a></li>
-          <li><a href="#faq">שאלות</a></li>
-          <li><a href="#contact">אודות</a></li>
-          <li><a href="#contact" className="nav-cta">ייעוץ חינם</a></li>
+        <button className={`hamburger${menuOpen ? ' open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="תפריט">
+          <span></span><span></span><span></span>
+        </button>
+        <ul className={`nav-links${menuOpen ? ' nav-open' : ''}`}>
+          <li><a href="#about" onClick={() => setMenuOpen(false)}>אימון אישי</a></li>
+          <li><a href="#edge" onClick={() => setMenuOpen(false)}>היתרון שלנו</a></li>
+          <li><a href="#transform" onClick={() => setMenuOpen(false)}>תוצאות</a></li>
+          <li><a href="#reviews" onClick={() => setMenuOpen(false)}>לקוחות</a></li>
+          <li><a href="#instagram" onClick={() => setMenuOpen(false)}>אינסטגרם</a></li>
+          <li><a href="#faq" onClick={() => setMenuOpen(false)}>שאלות</a></li>
+          <li><a href="#contact" onClick={() => setMenuOpen(false)}>אודות</a></li>
+          <li><a href="#contact" className="nav-cta" onClick={() => setMenuOpen(false)}>ייעוץ חינם</a></li>
         </ul>
         <a className="nav-logo" href="#">RF</a>
       </nav>
